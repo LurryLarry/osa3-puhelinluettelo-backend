@@ -28,5 +28,19 @@ let numbers = [
 ]
   
 app.get('/api/numbers', (request, response) => {
-  response.send(numbers)
+  response.json(numbers)
 })
+
+app.get('/api/info', (request, response) => {
+
+  let amount = numbers.length
+  let info = `Phonebook has info for ${amount} people <br><br>${new Date()}`
+  console.log(info)
+  
+  response.send(info)
+})
+
+
+const port = 3001
+app.listen(port)
+console.log(`Server running on port ${port}`)
