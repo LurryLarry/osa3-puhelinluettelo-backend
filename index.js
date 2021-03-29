@@ -3,7 +3,7 @@ const app = express()
 
 app.use(express.json())
 
-let numbers = [
+let persons = [
     {
       id: 1,
       name: "Arto Hellas",
@@ -27,13 +27,13 @@ let numbers = [
     }
 ]
   
-app.get('/api/numbers', (request, response) => {
-  response.json(numbers)
+app.get('/api/persons', (request, response) => {
+  response.json(persons)
 })
 
 app.get('/api/info', (request, response) => {
 
-  let amount = numbers.length
+  let amount = persons.length
   let info = `Phonebook has info for ${amount} people <br><br>${new Date()}`
   console.log(info)
   
