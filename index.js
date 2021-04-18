@@ -2,6 +2,7 @@ const express = require('express')
 const morgan = require('morgan')
 const cors = require('cors')
 const app = express()
+const Person = require('./models/person')
 
 app.use(cors())
 app.use(express.json())
@@ -34,7 +35,9 @@ let persons = [
 ]
   
 app.get('/api/persons', (request, response) => {
-  response.json(persons)
+  Person.find({}).then(persons => {
+    response.json(persons)
+  })
 })
 
 app.get('/api/info', (request, response) => {
@@ -88,14 +91,16 @@ app.post('/api/persons/', (request, response) => {
     })
   }
 
-  const person = {
-    id: generateId(),
+  const person = new Person ({
     name: body.name,
     number: body.number
-  }
+  })
 
-  console.log(person)
-  response.json(person)
+  person.save().then(savedPerson => {
+    console.log(savedPerson)
+    response.json(savedPerson)
+  })
+
 })
 
 
