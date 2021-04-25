@@ -23,7 +23,7 @@ const person = new Person({
 })
 
 if (process.argv.length === 3) {
-  console.log('phonebook:');
+  console.log('phonebook:')
   Person.find({}).then(result => {
     result.forEach(person => {
       console.log(`${person.name} ${person.number}`)
